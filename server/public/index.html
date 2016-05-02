@@ -1,0 +1,25 @@
+<html>
+  <head>
+
+  </head>
+  <body>
+    <h1>smile :)</h1>
+    <img style="border: 1px solid black" id="bulk" />
+
+    <script src="/socket.io.js"></script>
+    <script>
+      var socket = io(location.href);
+
+      var bulk = document.getElementById('bulk');
+
+      socket.on('connect', function(){ 
+        console.log('connected');
+      });
+      socket.on('data', function(data){
+        bulk.src = 'data:image/jpeg;base64,' + data.base64.data;
+      });
+      socket.on('disconnect', function(){});
+    </script>
+  </body>
+</html>
+
